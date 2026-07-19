@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="title">
+	{{ section.title }}
+</h1>
+
+{{ section.content | safe }}
+
+{% for path in section.subsections %}
+	{% set subsection = get_section(path=path) %}
+	<h2><a href="{{ subsection.permalink | safe }}">{{ subsection.title }}</a></h2>
+{% endfor %}
+
+{% for page in section.pages %}
+	<h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+{% endfor %}
+
+{% endblock content %}
